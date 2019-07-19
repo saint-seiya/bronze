@@ -1,54 +1,32 @@
 package main
 
-import (
-	"fmt"
-	"math/rand"
-	"time"
-)
+import "fmt"
+
+func counter(out chan<- int) {
+	for x := 0; x < 100; x++ {
+		out <- x
+	}
+	close(out)
+}
+
+func squarer(out chan<- int, in <-chan int) {
+	for v := range in {
+		out <- v * v
+	}
+	close(out)
+}
+func printer(in <-chan int) {
+	for v := range in {
+		fmt.Println(v)
+	}
+}
 
 func main() {
-	example1()
-	example2()
-}
+	naturals := make(chan int)
+	squares := make(chan int)
 
-// 示例1。
-func example1() {
-	// 准备好几个通道。
-	intChannels := [3]chan int{
-		make(chan int, 1),
-		make(chan int, 1),
-		make(chan int, 1),
-	}
-	// 随机选择一个通道，并向它发送元素值。
-	index := rand.Intn(3)
-	fmt.Printf("index值是: %d\n", index)
-	intChannels[index] <- index
-	// 哪一个通道中有可取的元素值，哪个对应的分支就会被执行。
-	select {
-	case <-intChannels[0]:
-		fmt.Println("第一个case分支被执行")
-	case <-intChannels[1]:
-		fmt.Println("第二个case分支被执行")
-	case elem := <-intChannels[2]:
-		fmt.Printf("第三个case分支被执行，元素是 %d.\n", elem)
-	default:
-		fmt.Println("没有case分支被执行")
-	}
-}
+	go counter(naturals)
+	go squarer(squares, naturals)
 
-// 示例2。
-func example2() {
-	intChan := make(chan int, 1)
-	// 一秒后关闭通道。
-	time.AfterFunc(time.Second, func() {
-		close(intChan)
-	})
-	select {
-	case _, ok := <-intChan:
-		if !ok {
-			fmt.Println("case分支被关闭.")
-			break
-		}
-		fmt.Println("case分支被执行.")
-	}
+	printer(squares)
 }

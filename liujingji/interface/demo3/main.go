@@ -9,7 +9,7 @@ type Pet interface {
 }
 
 type Dog struct {
-	name string // 名字。
+	name string
 }
 
 func (dog *Dog) SetName(name string) {

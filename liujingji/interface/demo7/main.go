@@ -20,11 +20,22 @@ func (p Person) printName() {
 	fmt.Println(p.name)
 }
 
+type Person1 struct {
+	name string
+}
+
+func (p Person1) getName() string {
+	return p.name
+}
+func (p Person1) printName() {
+	fmt.Println(p.name)
+}
+
 func main() {
 	var t Tester
 	var m Tester
 	t = Person{"xiaohua"}
-	m = Person{"360"}
+	m = Person1{"360"}
 	fmt.Printf("t.(Person)前, t的动态类型%T", t)
 	fmt.Println()
 	fmt.Printf("t.(Person)前, t的动态值%v", t)

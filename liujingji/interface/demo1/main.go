@@ -31,5 +31,4 @@ func main() {
 	_, ok = interface{}(&dog).(Pet)
 	fmt.Printf("*Dog 实现 interface Pet: %v\n", ok)
 	fmt.Println()
-
 }

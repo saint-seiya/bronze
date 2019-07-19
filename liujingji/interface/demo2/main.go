@@ -9,7 +9,7 @@ type Pet interface {
 }
 
 type Dog struct {
-	name string // 名字。
+	name string
 }
 
 func (dog *Dog) SetName(name string) {
@@ -45,7 +45,7 @@ func main() {
 	cat := Cat{"black cat"}
 	var pet Pet
 	fmt.Printf("动态类型%T, 动态值%v\n", pet, pet)
-	pet = &dog
+	pet = dog
 	fmt.Printf("动态类型%T, 动态值%v\n", pet, pet)
 	pet = &cat
 	fmt.Printf("动态类型%T, 动态值%v\n", pet, pet)

@@ -33,7 +33,7 @@ func main() {
 	var pet Pet = dog
 	dog.SetName("monster")
 	fmt.Printf("dog的name是 %q.\n", dog.Name())
-	fmt.Printf("pet 是 %s, 它的名字是 %q.\n", pet.Category(), pet.Name())
+	fmt.Printf("pet的名字是 %q.\n", pet.Name())
 	fmt.Println("----------------示例一结束----------------")
 	fmt.Println()
 

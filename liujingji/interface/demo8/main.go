@@ -8,17 +8,17 @@ func main() {
 	var a myInt
 	a = 2
 
-	ifElse(nil)
-	ifElse(1)
-	ifElse("1")
-	ifElse(true)
-	ifElse(a)
+	// ifElse(nil)
+	// ifElse(1)
+	// ifElse("1")
+	// ifElse(true)
+	// ifElse(a)
 
-	// typeSwtich(nil)
-	// typeSwtich(1)
-	// typeSwtich("1")
-	// typeSwtich(true)
-	// typeSwtich(a)
+	typeSwtich(nil)
+	typeSwtich(1)
+	typeSwtich("1")
+	typeSwtich(true)
+	typeSwtich(a)
 }
 func ifElse(x interface{}) {
 	if x == nil {
